@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Blue Reward — $750 Gift Card</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #eef2fa 0%, #dfe6f0 100%);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      padding: 1rem 1rem 2.5rem;
+      min-height: 100vh;
+    }
+
+    /* MAIN CARD */
+    .card {
+      max-width: 620px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 20, 50, 0.2);
+      overflow: hidden;
+    }
+
+    /* ----- SLIDING NOTIFICATION (POP-UP) ----- */
+    .notification-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transform: translateY(-100%);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .notification-popup.show {
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .notif-card {
+      background: #ffffff;
+      margin: 0.75rem 1rem;
+      padding: 0.9rem 1.2rem;
+      border-radius: 60px;
+      box-shadow: 0 8px 20px rgba(0, 60, 110, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      border-left: 5px solid #1e88e5;
+      border-right: 1px solid #e0f0ff;
+      max-width: 560px;
+      width: auto;
+      background: #ffffff;
+      font-weight: 500;
+      pointer-events: auto;
+    }
+    .notif-icon {
+      background: #e3f2fd;
+      border-radius: 50px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #0a5e9e;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .notif-message {
+      flex: 1;
+      font-size: 0.9rem;
+      color: #0b3b5f;
+    }
+    .notif-message strong {
+      color: #0a5e9e;
+    }
+    .close-notif {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: #7f8c8d;
+      padding: 0 0.3rem;
+      transition: 0.1s;
+      font-weight: 600;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .close-notif:hover {
+      background: #f0f0f0;
+      color: #1e3b5c;
+    }
+    @media (max-width: 550px) {
+      .notif-card {
+        padding: 0.7rem 1rem;
+        width: calc(100% - 2rem);
+      }
+      .notif-message {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* main content */
+    .content {
+      padding: 1.2rem 1.8rem 2rem;
+    }
+
+    /* timer row – smaller, placed at top */
+    .timer-row {
+      background: #eef3fc;
+      border-radius: 1.5rem;
+      padding: 0.6rem 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      border: 1px solid #cde5fc;
+    }
+    .timer-label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.3px;
+      color: #0a4b7a;
+      background: #ffffffb3;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+    }
+    .timer-clock {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.6rem;
+      background: #ffffff;
+      padding: 0.1rem 0.9rem;
+      border-radius: 60px;
+      color: #136b9c;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      letter-spacing: 1px;
+    }
+
+    /* centered gift card */
+    .gift-center {
+      text-align: center;
+      margin: 0.2rem 0 0.5rem;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0a2f44, #136b9c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+    .gift-sub {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #2c5a7a;
+      border-bottom: 2px dotted #a0c4f0;
+      display: inline-block;
+      padding-bottom: 0.1rem;
+    }
+
+    /* steps */
+    .steps {
+      background: #f5f9ff;
+      border-radius: 1.6rem;
+      padding: 1.2rem 1.4rem;
+      margin: 1.2rem 0 1rem;
+      border: 1px solid #d9ebff;
+    }
+    .steps h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0a4b7a;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .step-number {
+      background: #1e88e5;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .step-text {
+      font-weight: 500;
+      color: #1e3a5f;
+    }
+
+    /* FAQ */
+    .faq-section {
+      margin: 1.4rem 0 1.6rem;
+    }
+    .faq-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: #0a4b7a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .faq-item {
+      border-bottom: 1px solid #cde0f0;
+      padding: 0.75rem 0;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      cursor: pointer;
+      color: #136b9c;
+      transition: 0.2s;
+    }
+    .faq-question:hover {
+      color: #0a4f7c;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      color: #2c5a7a;
+      font-size: 0.85rem;
+      padding-top: 0;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 110px;
+      padding-top: 0.6rem;
+    }
+    .plus-icon {
+      font-size: 1.3rem;
+      font-weight: 400;
+      transition: transform 0.2s;
+    }
+    .faq-item.active .plus-icon {
+      transform: rotate(45deg);
+    }
+
+    /* claim zone */
+    .claim-zone {
+      text-align: center;
+      margin: 1.6rem 0 0.3rem;
+    }
+    .online-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #f0f7fe;
+      padding: 0.45rem 1.3rem;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #0a4b7a;
+      margin-bottom: 1.1rem;
+      border: 1px solid #bbd6f5;
+    }
+    .online-number {
+      font-weight: 800;
+      font-size: 1.1rem;
+      font-family: monospace;
+      color: #146b3a;
+      background: transparent;
+      padding: 0 0.2rem;
+      display: inline-block;
+      min-width: 45px;
+      transition: transform 0.1s ease;
+    }
+    .claim-btn {
+      background: linear-gradient(105deg, #1e6eb5, #0f5090);
+      border: none;
+      width: 100%;
+      padding: 0.9rem;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: white;
+      border-radius: 3rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 8px 18px rgba(21, 101, 162, 0.35);
+      letter-spacing: 0.8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .claim-btn:hover {
+      transform: scale(0.98);
+      background: linear-gradient(105deg, #0f5a9c, #0a4375);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .legal-note {
+      font-size: 0.7rem;
+      color: #6c86a3;
+      text-align: center;
+      margin-top: 1.2rem;
+      border-top: 1px solid #e2edfc;
+      padding-top: 1rem;
+    }
+
+    @media (max-width: 500px) {
+      .content {
+        padding: 1rem 1.2rem 1.6rem;
+      }
+      h1 {
+        font-size: 2.4rem;
+      }
+      .timer-clock {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="notification-popup" id="slidingNotification">
+  <div class="notif-card" id="notifCard">
+    <div class="notif-icon">
+      🎁 <span>✨</span>
+    </div>
+    <div class="notif-message" id="notifMessage">
+      Loading...
+    </div>
+    <button class="close-notif" id="closeNotifBtn" aria-label="Close">✕</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="content">
+    <!-- smaller timer row -->
+    <div class="timer-row">
+      <span class="timer-label">⏱️ Offer expires in</span>
+      <span class="timer-clock" id="countdownDisplay">13:48</span>
+    </div>
+
+    <!-- centered $750 Gift Card -->
+    <div class="gift-center">
+      <h1>$750<br>Gift Card</h1>
+      <div class="gift-sub">— Yours to Claim —</div>
+    </div>
+
+    <!-- steps -->
+    <div class="steps">
+      <h3>📌 HOW IT WORKS</h3>
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-text">Complete 4–5 promotional deals</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-text">Enter a valid email address</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-text">Must be 18 years or older</div>
+      </div>
+    </div>
+
+    <!-- FAQ accordion -->
+    <div class="faq-section">
+      <div class="faq-title">💬 COMMON QUESTIONS</div>
+      <div class="faq-item" id="faq1">
+        <div class="faq-question">
+          <span>How long do the deals take?</span>
+          <span class="plus-icon">+</span>
+        </div>
+        <div class="faq-answer">Most deals take between 2–5 minutes each. Average total time: 12-18 minutes.</div>
+      </div>
+      <div class="faq-item" id="faq2">
+        <div class="faq-question">
+          <span>What type of deals are included?</span>
+          <span class="plus-icon">+</span>
+        </div>
+        <div class="faq-answer">Simple sign-up offers & free trials — no purchase necessary for most.</div>
+      </div>
+      <div class="faq-item" id="faq3">
+        <div class="faq-question">
+          <span>When do I receive my reward?</span>
+          <span class="plus-icon">+</span>
+        </div>
+        <div class="faq-answer">$750 gift card is delivered instantly via email after completing all steps.</div>
+      </div>
+    </div>
+
+    <!-- claim button + live people -->
+    <div class="claim-zone">
+      <div class="online-counter">
+        👥 People live on the website:
+        <span class="online-number" id="livePeopleCount">78</span>
+      </div>
+      <button class="claim-btn" id="claimButton">🎁 CLAIM NOW →</button>
+      <div class="legal-note">*Limited spots. Must be 18+. Valid email required.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --------------------------------------------------------------
+  // 1. TIMER (starts at 13:48 = 828 sec)
+  // --------------------------------------------------------------
+  let totalSeconds = 13 * 60 + 48;
+  const timerElement = document.getElementById('countdownDisplay');
+  let timerInterval = null;
+
+  function updateTimerDisplay() {
+    if (!timerElement) return;
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    timerElement.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    if (totalSeconds <= 0) {
+      clearInterval(timerInterval);
+      timerElement.textContent = "00:00";
+      timerElement.style.color = "#b22234";
+    }
+  }
+
+  function startCountdown() {
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      if (totalSeconds > 0) {
+        totalSeconds--;
+        updateTimerDisplay();
+      } else {
+        clearInterval(timerInterval);
+      }
+    }, 1000);
+  }
+  updateTimerDisplay();
+  startCountdown();
+
+  // --------------------------------------------------------------
+  // 2. SLIDING NOTIFICATION (POP-UP)
+  //    - No swipe hint
+  //    - Dismiss only via X button or auto-dismiss after 10s
+  //    - Clicking anywhere else on notification does nothing
+  // --------------------------------------------------------------
+  const names = [
+    "James", "Mary", "John", "Patricia", "Robert", "Jennifer", "Michael", "Linda",
+    "William", "Elizabeth", "David", "Sarah", "Joseph", "Jessica", "Thomas", "Karen",
+    "Charles", "Nancy", "Christopher", "Lisa", "Daniel", "Emma", "Matthew", "Olivia",
+    "Anthony", "Sophia", "Joshua", "Ava", "Andrew", "Isabella", "Kevin", "Mia", "Brian"
+  ];
+  const lastInitials = ["A.","B.","C.","D.","F.","G.","H.","J.","K.","L.","M.","P.","R.","S.","T.","W."];
+  const cities = [
+    "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia",
+    "San Antonio", "San Diego", "Dallas", "Austin", "Denver", "Seattle",
+    "Boston", "Miami", "Atlanta", "Portland", "Detroit", "Nashville",
+    "Las Vegas", "Orlando", "Charlotte", "Columbus"
+  ];
+
+  function getRandomNameAndCity() {
+    const firstName = names[Math.floor(Math.random() * names.length)];
+    const lastInit = lastInitials[Math.floor(Math.random() * lastInitials.length)];
+    const full = `${firstName} ${lastInit}`;
+    const city = cities[Math.floor(Math.random() * cities.length)];
+    return { full, city };
+  }
+
+  const notifPopup = document.getElementById('slidingNotification');
+  const notifMessageSpan = document.getElementById('notifMessage');
+  const closeBtn = document.getElementById('closeNotifBtn');
+  let autoDismissTimer = null;
+  let nextNotificationTimer = null;
+  let isVisible = false;
+
+  function updateNotificationContent() {
+    const { full, city } = getRandomNameAndCity();
+    if (notifMessageSpan) {
+      notifMessageSpan.innerHTML = `<strong>${full}</strong> from ${city} just claimed their gift card! 🎉`;
+    }
+  }
+
+  function dismissNotification(manual = true) {
+    if (!notifPopup) return;
+    if (autoDismissTimer) {
+      clearTimeout(autoDismissTimer);
+      autoDismissTimer = null;
+    }
+    if (notifPopup.classList.contains('show')) {
+      notifPopup.classList.remove('show');
+      isVisible = false;
+    }
+    // schedule next notification after 7 seconds (only if manual dismiss or auto-dismiss finished)
+    if (nextNotificationTimer) clearTimeout(nextNotificationTimer);
+    nextNotificationTimer = setTimeout(() => {
+      showNextNotification();
+    }, 7000);
+  }
+
+  function showNextNotification() {
+    if (!notifPopup) return;
+    // clear any pending timers
+    if (autoDismissTimer) clearTimeout(autoDismissTimer);
+    if (nextNotificationTimer) clearTimeout(nextNotificationTimer);
+    
+    updateNotificationContent();
+    notifPopup.classList.add('show');
+    isVisible = true;
+    
+    // auto dismiss after 10 seconds
+    autoDismissTimer = setTimeout(() => {
+      if (isVisible) {
+        dismissNotification(false);
+      }
+    }, 10000);
+  }
+
+  // initial delay: first notification after 2 seconds
+  setTimeout(() => {
+    if (!isVisible) {
+      showNextNotification();
+    }
+  }, 2000);
+
+  // X button: dismiss only via this button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isVisible) {
+        dismissNotification(true);
+      }
+    });
+  }
+
+  // IMPORTANT: clicking on the notification card itself does NOT dismiss
+  // (we do not add any click listener to .notif-card for dismissal)
+  // So only X button and auto-dismiss will close it.
+
+  // --------------------------------------------------------------
+  // 3. LIVE PEOPLE COUNT (slower updates: every 5.8 seconds)
+  //    range 70-90, step ≤7, dark green text, no background inside span
+  // --------------------------------------------------------------
+  let currentOnline = Math.floor(Math.random() * (90 - 70 + 1) + 70);
+  const peopleSpan = document.getElementById('livePeopleCount');
+  if (peopleSpan) peopleSpan.innerText = currentOnline;
+
+  function updatePeopleCount() {
+    let delta = Math.floor(Math.random() * 15) - 7; // -7 .. +7
+    let newVal = currentOnline + delta;
+    if (newVal < 70) newVal = 70;
+    if (newVal > 90) newVal = 90;
+    let diff = Math.abs(newVal - currentOnline);
+    if (diff > 7) {
+      if (newVal > currentOnline) newVal = Math.min(currentOnline + 7, 90);
+      else newVal = Math.max(currentOnline - 7, 70);
+    }
+    if (newVal !== currentOnline) {
+      currentOnline = newVal;
+      if (peopleSpan) {
+        peopleSpan.innerText = currentOnline;
+        peopleSpan.style.transform = "scale(1.1)";
+        setTimeout(() => { if(peopleSpan) peopleSpan.style.transform = "scale(1)"; }, 200);
+      }
+    } else {
+      // tiny nudge to avoid static numbers at boundaries
+      if (currentOnline === 70) currentOnline = 73;
+      else if (currentOnline === 90) currentOnline = 86;
+      else {
+        let tiny = Math.random() > 0.5 ? 1 : -1;
+        let nudged = currentOnline + tiny;
+        if (nudged >= 70 && nudged <= 90) currentOnline = nudged;
+      }
+      if (peopleSpan) peopleSpan.innerText = currentOnline;
+    }
+  }
+
+  // update every 5.8 seconds (slower than original 2-4s)
+  let peopleInterval = setInterval(() => {
+    updatePeopleCount();
+  }, 5800);
+
+  // initial nudge after 2 seconds
+  setTimeout(() => updatePeopleCount(), 2000);
+
+  // --------------------------------------------------------------
+  // 4. FAQ ACCORDION
+  // --------------------------------------------------------------
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const qDiv = item.querySelector('.faq-question');
+    qDiv.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      faqItems.forEach(f => {
+        if (f !== item && f.classList.contains('active')) f.classList.remove('active');
+      });
+      item.classList.toggle('active');
+    });
+  });
+
+  // --------------------------------------------------------------
+  // 5. CLAIM BUTTON demo
+  // --------------------------------------------------------------
+  const claimBtn = document.getElementById('claimButton');
+  if (claimBtn) {
+    claimBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("✨ Demo: Complete promotional deals to unlock your $750 Gift Card! ✨");
+    });
+  }
+
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    if (timerInterval) clearInterval(timerInterval);
+    if (peopleInterval) clearInterval(peopleInterval);
+    if (autoDismissTimer) clearTimeout(autoDismissTimer);
+    if (nextNotificationTimer) clearTimeout(nextNotificationTimer);
+  });
+</script>
+</body>
+</html>
