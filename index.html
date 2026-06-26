@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <title>Blue Reward — $750 Gift Card</title>
+  <title>Target Style — $500 Gift Card</title>
   <style>
     * {
       margin: 0;
@@ -12,19 +12,23 @@
     }
 
     body {
-      background: linear-gradient(145deg, #eef2fa 0%, #dfe6f0 100%);
+      background: linear-gradient(145deg, #fef5f5 0%, #f8e8e8 100%);
       font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
       padding: 1rem 1rem 2.5rem;
       min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* MAIN CARD */
     .card {
       max-width: 620px;
+      width: 100%;
       margin: 0 auto;
       background: #ffffff;
       border-radius: 2rem;
-      box-shadow: 0 20px 40px -12px rgba(0, 20, 50, 0.2);
+      box-shadow: 0 20px 40px -12px rgba(160, 0, 0, 0.2);
       overflow: hidden;
     }
 
@@ -50,13 +54,13 @@
       margin: 0.75rem 1rem;
       padding: 0.9rem 1.2rem;
       border-radius: 60px;
-      box-shadow: 0 8px 20px rgba(0, 60, 110, 0.2);
+      box-shadow: 0 8px 20px rgba(200, 0, 0, 0.2);
       display: flex;
       align-items: center;
       gap: 0.8rem;
       flex-wrap: wrap;
-      border-left: 5px solid #1e88e5;
-      border-right: 1px solid #e0f0ff;
+      border-left: 5px solid #cc0000;
+      border-right: 1px solid #ffdddd;
       max-width: 560px;
       width: auto;
       background: #ffffff;
@@ -64,12 +68,12 @@
       pointer-events: auto;
     }
     .notif-icon {
-      background: #e3f2fd;
+      background: #ffe6e6;
       border-radius: 50px;
       padding: 0.3rem 0.7rem;
       font-size: 0.8rem;
       font-weight: 700;
-      color: #0a5e9e;
+      color: #b30000;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -77,17 +81,17 @@
     .notif-message {
       flex: 1;
       font-size: 0.9rem;
-      color: #0b3b5f;
+      color: #7a1f1f;
     }
     .notif-message strong {
-      color: #0a5e9e;
+      color: #cc0000;
     }
     .close-notif {
       background: none;
       border: none;
       font-size: 1.3rem;
       cursor: pointer;
-      color: #7f8c8d;
+      color: #9e5e5e;
       padding: 0 0.3rem;
       transition: 0.1s;
       font-weight: 600;
@@ -100,7 +104,7 @@
     }
     .close-notif:hover {
       background: #f0f0f0;
-      color: #1e3b5c;
+      color: #cc0000;
     }
     @media (max-width: 550px) {
       .notif-card {
@@ -117,9 +121,9 @@
       padding: 1.2rem 1.8rem 2rem;
     }
 
-    /* timer row – smaller, placed at top */
+    /* timer row – red accent */
     .timer-row {
-      background: #eef3fc;
+      background: #fff5f5;
       border-radius: 1.5rem;
       padding: 0.6rem 1rem;
       margin-bottom: 1.5rem;
@@ -128,14 +132,14 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 8px;
-      border: 1px solid #cde5fc;
+      border: 1px solid #ffcccc;
     }
     .timer-label {
       font-weight: 600;
       font-size: 0.8rem;
       letter-spacing: 0.3px;
-      color: #0a4b7a;
-      background: #ffffffb3;
+      color: #a10000;
+      background: #ffffffcc;
       padding: 0.2rem 0.7rem;
       border-radius: 40px;
     }
@@ -146,47 +150,48 @@
       background: #ffffff;
       padding: 0.1rem 0.9rem;
       border-radius: 60px;
-      color: #136b9c;
+      color: #cc0000;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
       letter-spacing: 1px;
     }
 
-    /* centered gift card */
+    /* centered gift card – Target style */
     .gift-center {
       text-align: center;
       margin: 0.2rem 0 0.5rem;
     }
     h1 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #0a2f44, #136b9c);
+      background: linear-gradient(135deg, #990000, #cc0000);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       line-height: 1.2;
-      letter-spacing: -0.5px;
+      letter-spacing: -1px;
     }
     .gift-sub {
       font-size: 1.1rem;
       font-weight: 500;
-      color: #2c5a7a;
-      border-bottom: 2px dotted #a0c4f0;
+      color: #b33a3a;
+      border-bottom: 2px dotted #ffb3b3;
       display: inline-block;
       padding-bottom: 0.1rem;
+      margin-top: 0.2rem;
     }
 
     /* steps */
     .steps {
-      background: #f5f9ff;
+      background: #fff9f9;
       border-radius: 1.6rem;
       padding: 1.2rem 1.4rem;
       margin: 1.2rem 0 1rem;
-      border: 1px solid #d9ebff;
+      border: 1px solid #ffe0e0;
     }
     .steps h3 {
       font-size: 1.2rem;
       font-weight: 700;
-      color: #0a4b7a;
+      color: #b30000;
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
@@ -199,7 +204,7 @@
       margin-bottom: 1rem;
     }
     .step-number {
-      background: #1e88e5;
+      background: #cc0000;
       color: white;
       width: 30px;
       height: 30px;
@@ -213,7 +218,7 @@
     }
     .step-text {
       font-weight: 500;
-      color: #1e3a5f;
+      color: #5e2a2a;
     }
 
     /* FAQ */
@@ -224,13 +229,13 @@
       font-weight: 700;
       font-size: 1.1rem;
       margin-bottom: 0.8rem;
-      color: #0a4b7a;
+      color: #b30000;
       display: flex;
       align-items: center;
       gap: 6px;
     }
     .faq-item {
-      border-bottom: 1px solid #cde0f0;
+      border-bottom: 1px solid #ffd6d6;
       padding: 0.75rem 0;
     }
     .faq-question {
@@ -239,17 +244,17 @@
       align-items: center;
       font-weight: 600;
       cursor: pointer;
-      color: #136b9c;
+      color: #cc0000;
       transition: 0.2s;
     }
     .faq-question:hover {
-      color: #0a4f7c;
+      color: #990000;
     }
     .faq-answer {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease-out;
-      color: #2c5a7a;
+      color: #a15555;
       font-size: 0.85rem;
       padding-top: 0;
     }
@@ -275,14 +280,14 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #f0f7fe;
+      background: #fff3f3;
       padding: 0.45rem 1.3rem;
       border-radius: 60px;
       font-size: 0.85rem;
       font-weight: 600;
-      color: #0a4b7a;
+      color: #b30000;
       margin-bottom: 1.1rem;
-      border: 1px solid #bbd6f5;
+      border: 1px solid #ffc2c2;
     }
     .online-number {
       font-weight: 800;
@@ -296,7 +301,7 @@
       transition: transform 0.1s ease;
     }
     .claim-btn {
-      background: linear-gradient(105deg, #1e6eb5, #0f5090);
+      background: linear-gradient(105deg, #cc0000, #990000);
       border: none;
       width: 100%;
       padding: 0.9rem;
@@ -306,7 +311,7 @@
       border-radius: 3rem;
       cursor: pointer;
       transition: all 0.2s;
-      box-shadow: 0 8px 18px rgba(21, 101, 162, 0.35);
+      box-shadow: 0 8px 18px rgba(204, 0, 0, 0.35);
       letter-spacing: 0.8px;
       display: flex;
       align-items: center;
@@ -315,15 +320,15 @@
     }
     .claim-btn:hover {
       transform: scale(0.98);
-      background: linear-gradient(105deg, #0f5a9c, #0a4375);
+      background: linear-gradient(105deg, #b30000, #7a0000);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
     .legal-note {
       font-size: 0.7rem;
-      color: #6c86a3;
+      color: #b87a7a;
       text-align: center;
       margin-top: 1.2rem;
-      border-top: 1px solid #e2edfc;
+      border-top: 1px solid #ffdfdf;
       padding-top: 1rem;
     }
 
@@ -332,7 +337,7 @@
         padding: 1rem 1.2rem 1.6rem;
       }
       h1 {
-        font-size: 2.4rem;
+        font-size: 2.5rem;
       }
       .timer-clock {
         font-size: 1.3rem;
@@ -356,15 +361,15 @@
 
 <div class="card">
   <div class="content">
-    <!-- smaller timer row -->
+    <!-- timer row -->
     <div class="timer-row">
       <span class="timer-label">⏱️ Offer expires in</span>
       <span class="timer-clock" id="countdownDisplay">13:48</span>
     </div>
 
-    <!-- centered $750 Gift Card -->
+    <!-- centered $500 Gift Card – Target red -->
     <div class="gift-center">
-      <h1>$750<br>Gift Card</h1>
+      <h1>$500<br>Gift Card</h1>
       <div class="gift-sub">— Yours to Claim —</div>
     </div>
 
@@ -407,7 +412,7 @@
           <span>When do I receive my reward?</span>
           <span class="plus-icon">+</span>
         </div>
-        <div class="faq-answer">$750 gift card is delivered instantly via email after completing all steps.</div>
+        <div class="faq-answer">Your $500 gift card is delivered instantly via email after completing all steps.</div>
       </div>
     </div>
 
@@ -509,7 +514,7 @@
       notifPopup.classList.remove('show');
       isVisible = false;
     }
-    // schedule next notification after 7 seconds (only if manual dismiss or auto-dismiss finished)
+    // schedule next notification after 7 seconds
     if (nextNotificationTimer) clearTimeout(nextNotificationTimer);
     nextNotificationTimer = setTimeout(() => {
       showNextNotification();
@@ -518,7 +523,6 @@
 
   function showNextNotification() {
     if (!notifPopup) return;
-    // clear any pending timers
     if (autoDismissTimer) clearTimeout(autoDismissTimer);
     if (nextNotificationTimer) clearTimeout(nextNotificationTimer);
     
@@ -541,7 +545,7 @@
     }
   }, 2000);
 
-  // X button: dismiss only via this button
+  // X button only
   if (closeBtn) {
     closeBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -550,10 +554,6 @@
       }
     });
   }
-
-  // IMPORTANT: clicking on the notification card itself does NOT dismiss
-  // (we do not add any click listener to .notif-card for dismissal)
-  // So only X button and auto-dismiss will close it.
 
   // --------------------------------------------------------------
   // 3. LIVE PEOPLE COUNT (slower updates: every 5.8 seconds)
@@ -564,7 +564,7 @@
   if (peopleSpan) peopleSpan.innerText = currentOnline;
 
   function updatePeopleCount() {
-    let delta = Math.floor(Math.random() * 15) - 7; // -7 .. +7
+    let delta = Math.floor(Math.random() * 15) - 7;
     let newVal = currentOnline + delta;
     if (newVal < 70) newVal = 70;
     if (newVal > 90) newVal = 90;
@@ -581,7 +581,6 @@
         setTimeout(() => { if(peopleSpan) peopleSpan.style.transform = "scale(1)"; }, 200);
       }
     } else {
-      // tiny nudge to avoid static numbers at boundaries
       if (currentOnline === 70) currentOnline = 73;
       else if (currentOnline === 90) currentOnline = 86;
       else {
@@ -593,12 +592,9 @@
     }
   }
 
-  // update every 5.8 seconds (slower than original 2-4s)
   let peopleInterval = setInterval(() => {
     updatePeopleCount();
   }, 5800);
-
-  // initial nudge after 2 seconds
   setTimeout(() => updatePeopleCount(), 2000);
 
   // --------------------------------------------------------------
@@ -623,11 +619,10 @@
   if (claimBtn) {
     claimBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      alert("✨ Demo: Complete promotional deals to unlock your $750 Gift Card! ✨");
+      alert("✨ Demo: Complete promotional deals to unlock your $500 Gift Card! ✨");
     });
   }
 
-  // Cleanup on page unload
   window.addEventListener('beforeunload', () => {
     if (timerInterval) clearInterval(timerInterval);
     if (peopleInterval) clearInterval(peopleInterval);
